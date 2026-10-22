@@ -1,0 +1,573 @@
+
+/* =========================================
+   Emmanuel WEBS — PAYMENT PAGE STYLES
+   Theme: Black, Cyan & Modern
+========================================= */
+
+/* ---------- Global Reset ---------- */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --background: #07090d;
+  --card-background: #10141c;
+  --card-border: #242c38;
+  --text-primary: #f5f7fa;
+  --text-secondary: #a0aab9;
+  --accent: #00d9ff;
+  --accent-hover: #62eaff;
+  --accent-glow: rgba(0, 217, 255, 0.18);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  min-height: 100vh;
+  font-family: Arial, Helvetica, sans-serif;
+  background:
+    radial-gradient(
+      ellipse at 50% 0%,
+      rgba(0, 217, 255, 0.09),
+      transparent 45%
+    ),
+    var(--background);
+  color: var(--text-primary);
+  line-height: 1.6;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button,
+a {
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* ---------- Header ---------- */
+
+.payment-header {
+  width: min(1120px, 90%);
+  margin: 0 auto;
+  padding: 28px 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+}
+
+.logo {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 1.15rem;
+  font-weight: 700;
+  letter-spacing: -0.5px;
+}
+
+.logo strong {
+  color: var(--accent);
+}
+
+.logo-icon {
+  width: 44px;
+  height: 44px;
+  display: grid;
+  place-items: center;
+  border: 1px solid var(--accent);
+  border-radius: 13px;
+  color: var(--accent);
+  font-size: 0.95rem;
+  font-weight: 800;
+  letter-spacing: -1px;
+  box-shadow: 0 0 20px var(--accent-glow);
+}
+
+.back-link {
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+  transition: color 0.25s ease;
+}
+
+.back-link:hover {
+  color: var(--accent);
+}
+
+/* ---------- Main Container ---------- */
+
+.payment-container {
+  width: min(1120px, 90%);
+  margin: 0 auto;
+}
+
+/* ---------- Intro Section ---------- */
+
+.payment-intro {
+  max-width: 720px;
+  margin: 100px auto 65px;
+  text-align: center;
+}
+
+.eyebrow {
+  display: inline-block;
+  margin-bottom: 22px;
+  color: var(--accent);
+  font-size: 0.76rem;
+  font-weight: 700;
+  letter-spacing: 3px;
+}
+
+.payment-intro h1 {
+  font-size: clamp(2.7rem, 6vw, 4.8rem);
+  line-height: 1.08;
+  letter-spacing: -3px;
+  font-weight: 800;
+}
+
+.payment-intro h1 span {
+  color: var(--accent);
+}
+
+.payment-intro p {
+  max-width: 520px;
+  margin: 24px auto 0;
+  color: var(--text-secondary);
+  font-size: 1.05rem;
+}
+
+/* ---------- Payment Cards ---------- */
+
+.payment-options {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 22px;
+  align-items: stretch;
+}
+
+.payment-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  padding: 32px 27px;
+  min-height: 330px;
+  background: linear-gradient(
+    145deg,
+    rgba(255, 255, 255, 0.035),
+    rgba(255, 255, 255, 0.008)
+  ), var(--card-background);
+  border: 1px solid var(--card-border);
+  border-radius: 20px;
+  transition:
+    transform 0.3s ease,
+    border-color 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+.payment-card:hover {
+  transform: translateY(-7px);
+  border-color: rgba(0, 217, 255, 0.55);
+  box-shadow: 0 18px 45px rgba(0, 0, 0, 0.25);
+}
+
+.payment-card.featured {
+  border-color: var(--accent);
+  box-shadow: 0 0 35px rgba(0, 217, 255, 0.08);
+}
+
+.card-number {
+  margin-bottom: 26px;
+  color: var(--accent);
+  font-size: 0.9rem;
+  font-weight: 700;
+  letter-spacing: 2px;
+}
+
+.popular-label {
+  display: inline-block;
+  align-self: flex-start;
+  margin-top: -49px;
+  margin-bottom: 23px;
+  margin-left: 48px;
+  padding: 5px 9px;
+  color: var(--accent);
+  background: rgba(0, 217, 255, 0.08);
+  border: 1px solid rgba(0, 217, 255, 0.18);
+  border-radius: 5px;
+  font-size: 0.63rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+}
+
+.payment-card h2 {
+  margin-bottom: 13px;
+  font-size: 1.45rem;
+  letter-spacing: -0.5px;
+}
+
+.payment-card p {
+  margin-bottom: 30px;
+  color: var(--text-secondary);
+  font-size: 0.93rem;
+  line-height: 1.8;
+}
+
+/* ---------- Payment Buttons ---------- */
+
+.payment-button {
+  width: 100%;
+  margin-top: auto;
+  padding: 14px 18px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  border: 1px solid var(--accent);
+  border-radius: 10px;
+  background: var(--accent);
+  color: #061016;
+  font-size: 0.9rem;
+  font-weight: 800;
+  text-align: center;
+  cursor: pointer;
+  transition:
+    background 0.25s ease,
+    color 0.25s ease,
+    transform 0.25s ease,
+    box-shadow 0.25s ease;
+}
+
+.payment-button:hover {
+  background: var(--accent-hover);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px var(--accent-glow);
+}
+
+.payment-button:focus-visible,
+.back-link:focus-visible,
+.payment-help a:focus-visible {
+  outline: 3px solid var(--accent-hover);
+  outline-offset: 4px;
+}
+
+.secondary-button {
+  background: transparent;
+  color: var(--accent);
+}
+
+.secondary-button:hover {
+  background: var(--accent);
+  color: #061016;
+}
+
+/* ---------- Security Notice ---------- */
+
+.payment-note {
+  display: flex;
+  align-items: flex-start;
+  gap: 18px;
+  margin-top: 35px;
+  padding: 25px;
+  background: rgba(255, 255, 255, 0.025);
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  border-radius: 16px;
+}
+
+.lock-icon {
+  flex-shrink: 0;
+  font-size: 1.5rem;
+}
+
+.payment-note h3 {
+  margin-bottom: 5px;
+  font-size: 1rem;
+}
+
+.payment-note p {
+  color: var(--text-secondary);
+  font-size: 0.88rem;
+  line-height: 1.8;
+}
+
+/* ---------- Contact Section ---------- */
+
+.payment-help {
+  margin: 90px auto 80px;
+  text-align: center;
+}
+
+.payment-help h2 {
+  margin-bottom: 12px;
+  font-size: clamp(1.5rem, 3vw, 2rem);
+  letter-spacing: -0.8px;
+}
+
+.payment-help p {
+  max-width: 570px;
+  margin: 0 auto 22px;
+  color: var(--text-secondary);
+}
+
+.payment-help a {
+  display: inline-block;
+  color: var(--accent);
+  font-weight: 700;
+  transition: color 0.25s ease;
+}
+
+.payment-help a:hover {
+  color: var(--accent-hover);
+}
+
+/* ---------- Footer ---------- */
+
+.payment-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+  padding: 25px 5%;
+  border-top: 1px solid rgba(255, 255, 255, 0.07);
+  color: #788394;
+  font-size: 0.8rem;
+}
+
+/* ---------- Responsive Design ---------- */
+
+@media (max-width: 900px) {
+  .payment-options {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .payment-card:last-child {
+    grid-column: 1 / -1;
+    min-height: 280px;
+  }
+
+  .payment-intro {
+    margin-top: 75px;
+  }
+}
+
+@media (max-width: 600px) {
+  .payment-header {
+    width: 90%;
+    padding: 20px 0;
+  }
+
+  .logo {
+    gap: 8px;
+    font-size: 1rem;
+  }
+
+  .logo-icon {
+    width: 38px;
+    height: 38px;
+  }
+
+  .back-link {
+    font-size: 0.78rem;
+  }
+
+  .payment-intro {
+    margin: 65px auto 42px;
+  }
+
+  .payment-intro h1 {
+    letter-spacing: -1.8px;
+  }
+
+  .payment-intro p {
+    font-size: 0.95rem;
+  }
+
+  .payment-options {
+    grid-template-columns: 1fr;
+    gap: 17px;
+  }
+
+  .payment-card,
+  .payment-card:last-child {
+    grid-column: auto;
+    min-height: 290px;
+    padding: 27px 23px;
+  }
+
+  .payment-note {
+    padding: 20px;
+  }
+
+  .payment-help {
+    margin: 65px auto;
+  }
+
+  .payment-footer {
+    flex-direction: column;
+    text-align: center;
+    gap: 8px;
+  }
+}
+
+/* =========================================
+   EMANUEL WEBS — PACKAGE SHOP
+   ========================================= */
+
+.package-shop {
+  width: min(1200px, 100% - 40px);
+  margin: 80px auto;
+  color: #f5f7fa;
+}
+
+.package-shop h2 {
+  margin-bottom: 12px;
+  font-size: clamp(28px, 4vw, 40px);
+  font-weight: 800;
+  letter-spacing: -1px;
+}
+
+.package-shop > p {
+  margin-bottom: 32px;
+  color: #aebdce;
+  font-size: 16px;
+  line-height: 1.7;
+}
+
+/* Package card layout */
+
+.package-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 24px;
+}
+
+.package-card {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 30px;
+  min-height: 230px;
+  background: linear-gradient(145deg, #171c24, #10141b);
+  border: 1px solid #293340;
+  border-radius: 20px;
+  transition:
+    transform 0.25s ease,
+    border-color 0.25s ease,
+    box-shadow 0.25s ease;
+}
+
+.package-card:hover {
+  transform: translateY(-5px);
+  border-color: #00d9ff;
+  box-shadow: 0 12px 35px rgba(0, 217, 255, 0.09);
+}
+
+.package-card h3 {
+  margin: 0 0 14px;
+  color: #ffffff;
+  font-size: 21px;
+  line-height: 1.4;
+}
+
+.package-card p {
+  margin: 0 0 28px;
+  color: #00d9ff;
+  font-size: 18px;
+  font-weight: 700;
+}
+
+/* Package purchase buttons */
+
+.package-card a {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  min-height: 50px;
+  margin-top: auto;
+  padding: 14px 18px;
+  background: #00d9f5;
+  border: 1px solid #00d9f5;
+  border-radius: 10px;
+  color: #061018;
+  font-size: 15px;
+  font-weight: 800;
+  text-align: center;
+  text-decoration: none;
+  transition:
+    background 0.2s ease,
+    color 0.2s ease,
+    transform 0.2s ease;
+}
+
+.package-card a:hover {
+  background: transparent;
+  color: #00d9ff;
+}
+
+.package-card a:focus-visible {
+  outline: 3px solid #ffffff;
+  outline-offset: 4px;
+}
+
+/* Tablet */
+
+@media (max-width: 900px) {
+  .package-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 18px;
+  }
+
+  .package-card {
+    padding: 24px;
+  }
+}
+
+/* Mobile */
+
+@media (max-width: 560px) {
+  .package-shop {
+    width: calc(100% - 32px);
+    margin: 55px auto;
+  }
+
+  .package-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .package-card {
+    min-height: 210px;
+    padding: 24px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .package-card,
+  .package-card a {
+    transition: none;
+  }
+
+  .package-card:hover {
+    transform: none;
+  }
+}
+
+/* ---------- Reduced Motion Accessibility ---------- */
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+  }
+}

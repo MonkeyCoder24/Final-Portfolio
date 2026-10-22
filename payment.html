@@ -1,0 +1,174 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Client Payments | Emmanuel Webs</title>
+  <meta
+    name="description"
+    content="Securely manage your website project payments with Emmanuel Webs."
+  >
+
+  <link rel="stylesheet" href="payment.css">
+  <script src="payment.js" defer></script>
+</head>
+
+<body>
+  <header class="payment-header">
+    <a class="logo" href="index.html">
+      <span class="logo-icon">EW</span>
+      <span>Emmanuel <strong>Webs</strong></span>
+    </a>
+
+    <a class="back-link" href="index.html">
+      ← Back to Home
+    </a>
+  </header>
+
+<section class="package-shop">
+  <h2>Choose Your Website Package</h2>
+  <p>Choose the service that fits your business.</p>
+
+  <div class="package-grid">
+    <article class="package-card">
+      <h3>Landing Page</h3>
+      <p>$249 one time</p>
+      <a href="#" data-payment="landing">Buy Landing Page →</a>
+    </article>
+
+    <article class="package-card">
+      <h3>Starter Website</h3>
+      <p>$499 one time</p>
+      <a href="#" data-payment="starter">Buy Starter Website →</a>
+    </article>
+
+    <article class="package-card">
+      <h3>Business Website</h3>
+      <p>$899 one time</p>
+      <a href="#" data-payment="business">Buy Business Website →</a>
+    </article>
+
+    <article class="package-card">
+      <h3>Premium Website</h3>
+      <p>$1,499 one time</p>
+      <a href="#" data-payment="premium">Buy Premium Website →</a>
+    </article>
+
+    <article class="package-card">
+      <h3>Website Redesign</h3>
+      <p>$399 one time</p>
+      <a href="#" data-payment="redesign">Buy Website Redesign →</a>
+    </article>
+
+    <article class="package-card">
+      <h3>Monthly Maintenance</h3>
+      <p>$79 per month</p>
+      <a href="#" data-payment="maintenance">Get Maintenance →</a>
+    </article>
+  </div>
+</section>
+
+  <main class="payment-container">
+    <section class="payment-intro">
+      <span class="eyebrow">SIMPLE. SECURE. PROFESSIONAL.</span>
+
+      <h1>Let's make your<br><span>vision happen.</span></h1>
+
+      <p>
+        Manage your website project payments below.
+        Choose the option that applies to your project.
+      </p>
+    </section>
+
+    <section class="payment-options">
+      <article class="payment-card">
+        <div class="card-number">01</div>
+        <h2>Project Deposit</h2>
+        <p>
+          Ready to get started? Pay your agreed deposit
+          to reserve your project and begin the process.
+        </p>
+
+        <a
+          class="payment-button"
+          href="#"
+          data-payment="deposit"
+        >
+          Pay Deposit →
+        </a>
+      </article>
+
+      <article class="payment-card featured">
+        <div class="card-number">02</div>
+        <span class="popular-label">CLIENT PAYMENTS</span>
+        <h2>Final Balance</h2>
+        <p>
+          Use this option to pay the remaining balance
+          on your website project, as agreed with Emmanuel.
+        </p>
+
+        <a
+          class="payment-button"
+          href="#"
+          data-payment="balance"
+        >
+          Pay Final Balance →
+        </a>
+      </article>
+
+      <article class="payment-card">
+        <div class="card-number">03</div>
+        <h2>Custom Invoice</h2>
+        <p>
+          Need to pay a different amount? Request a
+          payment link or invoice for your specific project.
+        </p>
+
+        <a
+          class="payment-button secondary-button"
+          href="#"
+          data-payment="invoice"
+        >
+          Request Invoice →
+        </a>
+      </article>
+    </section>
+
+    <section class="payment-note">
+      <div class="lock-icon">🔒</div>
+      <div>
+        <h3>Payment security matters</h3>
+        <p>
+          Payments are processed through your configured
+          payment provider. Never send card details by email
+          or through a website contact form.
+        </p>
+      </div>
+    </section>
+
+    <section class="payment-help">
+      <h2>Have a question about your payment?</h2>
+      <p>
+        Contact Emmanuel before submitting a payment if you
+        need help with your project total or invoice.
+      </p>
+
+      <a href="mailto:hello@Emmanuelwebs.com">
+        Contact Emmanuel →
+      </a>
+    </section>
+  </main>
+
+  <footer class="payment-footer">
+    <p>© <span id="year">2026</span> Emmanuel Webs. All rights reserved.</p>
+    <p>Built with purpose. Designed to stand out.</p>
+  </footer>
+
+  <script>
+    document.getElementById("year").textContent =
+      new Date().getFullYear();
+  </script>
+</body>
+</html>
