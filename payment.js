@@ -1,29 +1,53 @@
-
 /*
-  Emmanuel WEBS — CLIENT PAYMENT SYSTEM
+  Emmanuel Webs — Client Payment System
 
-  1. Create your payment links in Stripe.
-  2. Paste each link into the configuration below.
-  3. Save this file and test your buttons.
-
-  Never put Stripe secret API keys in this file.
+  Keep your public Stripe Payment Links here.
+  Never place Stripe secret API keys in front-end JavaScript.
 */
 
 const PAYMENT_LINKS = {
-  landing: "https://buy.stripe.com/5kQ5kEbSL2IYgR99VZ4Ja06", // Paste your Stripe landing page link here
-  starter: "https://buy.stripe.com/8x2eVe6yr4R66cv8RV4Ja01", // Paste your Stripe starter package link here
-  Business: "https://buy.stripe.com/8x2eVebSL5Va58r1pt4Ja03", // Paste your Stripe standard package link here
-  premium: "https://buy.stripe.com/3cI9AU5ungzO30jc474Ja00", // Paste your Stripe premium package link here
-  Redesign: "https://buy.stripe.com/28E3cwcWP5VadEXc474Ja04", // Paste your Stripe custom package link here
-  Maintenance: "https://buy.stripe.com/28EdRae0T4R6eJ19VZ4Ja05", // Paste your Stripe maintenance package link here
-  deposit: "", // Paste your Stripe deposit link here
-  balance: "", // Paste your Stripe final-balance link here
-  invoice: ""  // Optional: paste a general invoice payment link
+  // Full-package checkout links
+  landing: "https://buy.stripe.com/5kQ5kEbSL2IYgR99VZ4Ja06",
+  starter: "https://buy.stripe.com/8x2eVe6yr4R66cv8RV4Ja01",
+  business: "https://buy.stripe.com/8x2eVebSL5Va58r1pt4Ja03",
+  premium: "https://buy.stripe.com/3cI9AU5ungzO30jc474Ja00",
+  redesign: "https://buy.stripe.com/28E3cwcWP5VadEXc474Ja04",
+  maintenance: "https://buy.stripe.com/28EdRae0T4R6eJ19VZ4Ja05",
+
+  // Add separate Stripe links here when you create them.
+  // These are for project-specific amounts, not full package prices.
+  deposit: "",
+  balance: "",
+  invoice: ""
 };
 
+// Replace with the email address you actively monitor for client requests.
 const BUSINESS_EMAIL = "hello@Emmanuelwebs.com";
 
-// Configure each payment button on payment.html.
+const EMAIL_SUBJECTS = {
+  deposit: "Request Project Deposit Payment Link",
+  balance: "Request Final Balance Payment Link",
+  invoice: "Request Custom Invoice Payment Link"
+};
+
+function isValidStripeLink(value) {
+  try {
+    const url = new URL(value);
+    return (
+      url.protocol === "https:" &&
+      (url.hostname === "buy.stripe.com" ||
+        url.hostname === "checkout.stripe.com")
+    );
+  } catch {
+    return false;
+  }
+}
+
+function makeEmailRequest(subject) {
+  return `mailto:${BUSINESS_EMAIL}?subject=${encodeURIComponent(subject)}`;
+}
+
+// Configure every package and client-payment button once.
 document.querySelectorAll("[data-payment]").forEach((button) => {
   const paymentType = button.dataset.payment;
   const paymentUrl = PAYMENT_LINKS[paymentType];
@@ -35,78 +59,23 @@ document.querySelectorAll("[data-payment]").forEach((button) => {
     return;
   }
 
-  // If no payment link is configured, direct the client
-  // to request the appropriate payment link by email.
-  const subjects = {
-    deposit: "Request Project Deposit Payment Link",
-    balance: "Request Final Balance Payment Link",
-    invoice: "Request Custom Invoice Payment Link"
-  };
+  if (Object.prototype.hasOwnProperty.call(EMAIL_SUBJECTS, paymentType)) {
+    button.href = makeEmailRequest(EMAIL_SUBJECTS[paymentType]);
+    return;
+  }
 
-  button.href =
-    "mailto:" +
-    BUSINESS_EMAIL +
-    "?subject=" +
-    encodeURIComponent(
-      subjects[paymentType] || "Payment Question"
-    );
+  // Prevent an unconfigured package button from jumping to the top of the page.
+  button.removeAttribute("href");
+  button.setAttribute("aria-disabled", "true");
+  button.addEventListener("click", (event) => {
+    event.preventDefault();
+    window.alert("This payment link is not configured yet. Please contact Emanuel Webs.");
+  });
 });
 
-function isValidStripeLink(url) {
-  try {
-    const parsedUrl = new URL(url);
-
-    return (
-      parsedUrl.protocol === "https:" &&
-      (
-        parsedUrl.hostname === "buy.stripe.com" ||
-        parsedUrl.hostname === "checkout.stripe.com"
-      )
-    );
-  } catch {
-    return false;
-  }
-}
-
-// Log a reminder in the browser console if payment links are missing.
-Object.entries(PAYMENT_LINKS).forEach(([type, url]) => {
-  if (!url) {
-    console.info(
-      `Emmanuel Webs: Add your Stripe ${type} payment link when ready.`
-    );
-  }
-});
-
-
-document.querySelectorAll("[data-payment]").forEach((button) => {
-  const paymentType = button.dataset.payment;
-  const paymentUrl = PAYMENT_LINKS[paymentType];
-
-  if (
-    paymentUrl &&
-    paymentUrl.startsWith("https://buy.stripe.com/")
-  ) {
-    button.href = paymentUrl;
-    button.target = "_blank";
-    button.rel = "noopener noreferrer";
-  } else if (paymentType === "invoice" || 
-             paymentType === "deposit" ||
-             paymentType === "balance") {
-    const subjects = {
-      invoice: "Request a Website Project Invoice",
-      deposit: "Request a Website Project Deposit Link",
-      balance: "Request a Website Final Balance Link"
-    };
-
-    button.href =
-      "mailto:" + BUSINESS_EMAIL +
-      "?subject=" +
-      encodeURIComponent(subjects[paymentType]);
-  } else {
-    button.removeAttribute("href");
-    button.addEventListener("click", (event) => {
-      event.preventDefault();
-      alert("This payment link has not been configured yet.");
-    });
+// Helpful reminders while testing locally.
+["deposit", "balance", "invoice"].forEach((type) => {
+  if (!PAYMENT_LINKS[type]) {
+    console.info(`Emanuel Webs: ${type} payment link is not set; the button will open an email request.`);
   }
 });
